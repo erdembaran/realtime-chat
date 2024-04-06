@@ -10,8 +10,21 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
   },
+});
+
+io.on("connection", (socket) => {
+  console.log(socket.id);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+  });
+
+  socket.on("message", (data) => {
+    socket.to(data.room).emit("receivedMessage");
+  });
 });
 
 const PORT = process.env.PORT || 3001;
