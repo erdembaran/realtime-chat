@@ -27,8 +27,6 @@ const Chat = ({ socket, username }) => {
     }
   };
 
-  console.log(messages);
-
   return (
     <div className="flex justify-center items-center h-full">
       <div className="w-1/3 h-[480px] bg-white relative">
