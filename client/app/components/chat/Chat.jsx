@@ -17,7 +17,7 @@ const Chat = ({ socket, username }) => {
       return;
     } else {
       await socket.emit("message", { message, username });
-      setMessages((prev) => [...prev, messageData]);
+      setMessages((prev) => [...prev, { message, username }]);
       setMessage("");
     }
   };
