@@ -9,19 +9,14 @@ const Chat = ({ socket, username }) => {
     socket.on("receive_message", (data) => {
       setMessages((prev) => [...prev, data]);
     });
-  });
+  }, [socket]);
 
   const sendMessage = async () => {
     if (message === "") {
       alert("Please enter a message");
       return;
     } else {
-      const messageData = {
-        username: username,
-        message: message,
-      };
-
-      await socket.emit("message", messageData);
+      await socket.emit("message", { message, username });
       setMessages((prev) => [...prev, messageData]);
       setMessage("");
     }

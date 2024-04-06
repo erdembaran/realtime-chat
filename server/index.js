@@ -10,20 +10,18 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://127.0.0.1:8080",
+    origin: "http://127.0.0.1:3000",
     methods: ["GET", "POST"],
   },
 });
 
 io.on("connection", (socket) => {
-  console.log(socket.id);
-
   socket.on("join_room", (data) => {
     socket.join(data);
   });
 
   socket.on("message", (data) => {
-    socket.to(data.room).emit("receive_message");
+    socket.to(data.room).emit("receive_message", data);
   });
 });
 
