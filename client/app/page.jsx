@@ -23,7 +23,7 @@ export default function Page() {
           socket={socket}
         />
       ) : (
-        <Chat socket={socket} username={username} room={room} />
+        <Chat socket={socket} username={username} />
       )}
     </div>
   );
